@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		/*https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/super
+		https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes/extends*/
+		
+
+		class Vehicle {
+
+			constructor(wheels=4, fuel='gasolina', color = 'White') {
+				this.wheels = wheels;
+				this.fuel = fuel;
+				this.color = color;
+				this.matricula='9999LLL';
+			}
+
+		}
+
+		class Car extends Vehicle {
+			constructor() {
+				super(4, "gasoil", 'Red');
+				this.name="coche";
+			}
+			
+		}
+
+		class Motorcycle extends Vehicle {
+			constructor () {
+				super();
+				this.name="moto";
+			}
+		}
+
+		var car = new Car();
+		var motorcycle = new Motorcycle(2, 'gasoline');
+
+		console.log(car);
+		console.log(motorcycle);
+
+		//de la primera forma es diferente al resto de los métodos
+		//ver en consola la difencia entre ambos
+		class cadena extends String {
+			capitalize() {
+				let str = this.split(" ");
+
+				for (let i = 0, x = str.length; i < x; i++) {
+					str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+					console.log(str);
+				}
+
+				return str.join(" ");
+			}
+		}
+
+		String.prototype.trimer = function () {
+
+			return this.split(' ').join('');
+		}
+		let a = new cadena("pepa es muy alta");
+		console.log(a);
+		console.log(a.capitalize());
+		console.log(a.trimer());
+	</script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

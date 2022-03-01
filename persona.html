@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+        class Persona {
+            #nombre = '';
+            #apellidos = '';
+            #dni = '';
+            #fechaNacim = '';
+            constructor(nombre = '', apellidos = '', dni = '', fechaNacim = new Date(1970, 0, 1)) {
+                this.#nombre = nombre;
+                this.#apellidos = apellidos;
+                this.#dni = dni;
+                this.#fechaNacim = fechaNacim;
+            }
+            get apellidos () {
+                return this.#apellidos;
+            }
+            get nombreCompleto() {
+                return `${this.#apellidos}, ${this.#nombre}`;
+            }
+            get nacimiento() {
+                return this.#fechaNacim;
+            }
+            get edad() {
+                return this.#calc_edad();
+            }
+            set dni(value) {
+                if (/^[0-9]{8}[a-zA-Z]$/.test(value)) this.#dni=value;
+                else throw new Error("Error en DNI")
+            }
+            #calc_edad() {
+                let hoy = new Date();
+                let cumpleanos = this.#fechaNacim;
+                let edad = hoy.getFullYear() - cumpleanos.getFullYear();
+                let m = hoy.getMonth() - cumpleanos.getMonth();
+
+                if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+                    edad--;
+                }
+                return edad;
+            }
+        }
+        let a = new Persona('Pili', 'Alegre', '31337052N', new Date(1969, 6, 20));
+        console.log(a,a.dni);
+        let b=new Persona();
+        b.dni="33333333n";
+        console.log(a.nombreCompleto);
+        console.log(a.nacimiento.toLocaleDateString());
+        console.log(a.edad);
+        let as = [];
+        as.push(new Persona('aPili', 'Barcelona', '31337052n', new Date(1969, 6, 20)));
+        as.push(new Persona('ePili', 'Manzano', '31337052n', new Date(1969, 6, 20)));
+        as.push(new Persona('dPili', 'Alegre', '31337052n', new Date(1969, 6, 20)));
+        as.push(new Persona('ePili', 'Barcelona', '31337052n', new Date(1969, 6, 20)));
+        as.push(new Persona('rPili', 'Zapato', '31337052n', new Date(1969, 6, 20)));
+        as.push(new Persona('bPili', 'Abreu', '31337052n', new Date(1969, 6, 20)));
+        
+        console.log(as.sort((a, b) => {
+            if (a.apellidos < b.apellidos) return -1;
+            if (a.apellidos > b.apellidos) return 1;
+            if (a.nombre<b.nombre) return -1;
+            if (a.nombre>b.nombre) return 1;
+            return 0;
+        }));
+    </script>
+</head>
+
+<body></body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="monedas.js"></script>
+    <script>
+
+        function cargaLista() {
+            const tabla = document.createElement('table');
+            fetch('https://api.coingecko.com/api/v3/coins/list')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach((e) => {
+                        let fila = document.createElement('tr');
+                        fila.addEventListener("click", verPrecio);
+                        fila.dataset.id = e.id;
+                        fila.insertAdjacentHTML('beforeend', `<td>${e.id}</td><td>${e.symbol}</td><td>${e.name}</td>`);
+                        tabla.insertAdjacentElement('beforeend', fila);
+                    });
+                }).then(document.querySelector(".container").appendChild(tabla));
+        }
+
+        
+        async function verPrecio(evt) {
+            console.log(evt.currentTarget, evt.target)
+            if (evt.currentTarget.tagName == 'TR') {
+                evt.stopPropagation();
+                let ids = evt.currentTarget.dataset.id;
+                let response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`,
+                    { method: 'get' });
+                let data = await response.json();
+                console.log(Object.entries(data)[0][1]['usd']);
+                console.log(Object.values(data)[0]['usd']);
+                console.log(data[ids]['usd']);
+                console.log(data[ids].usd)
+                alert(`Precio: ${data[ids]['usd']}$`)
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const coin1 = new CoinFunction("BTC", "Bitcoin");
+            const coin2 = new CoinClass("BTC", "Bitcoin");
+            console.log(coin1, coin2);
+            // https://www.coingecko.com/en/api/documentation
+            //https://www.coingecko.com/en/api/documentation
+            document.querySelector('.lista').addEventListener("click", cargaLista);
+
+
+
+
+        });
+
+
+
+    </script>
+</head>
+
+<body>
+    <main>
+        <button class="lista">Cargar</button>
+        <div class="container"></div>
+    </main>
+</body>
+
+</html>
