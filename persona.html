@@ -37,6 +37,7 @@
                 return this.#dni;
             }
             set dni(value) {
+                //faltaría comprobar que la letra se corresponde con el número
                 if ((/^[0-9]{8}[a-zA-Z]$/.test(value)) || (value === "")) this.#dni = value;
                 else throw new Error("Error en DNI"); //si se lanza excepción hay que capturarla después
             }
