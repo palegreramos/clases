@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const listaColores = [];
+            document.querySelector('#a').addEventListener("click", (evt) => {
+                evt.preventDefault();
+                //aquí habría que validar el formulario
+                color={};
+                color.nombre=document.getElementById('nombre').value;
+                color.cod=document.getElementById('cod').value;
+                listaColores.push(color);
+                document.getElementById('nombre').value = "";
+                document.getElementById('cod').value = "";
+            });
+
+            document.querySelectorAll('#v,#o').forEach((e) => {
+                e.addEventListener('click', (evt) => {
+                    evt.preventDefault();
+                    if (evt.target.id == 'o') listaColores.sort(function (a, b) {
+                        if (a.nombre > b.nombre) {
+                            return 1;
+                        }
+                        if (a.nombre < b.nombre) {
+                            return -1;
+                        }
+                        // a must be equal to b
+                        return 0;
+                    });
+                    console.log(listaColores);
+                    let ul = document.createElement('ul');
+                    listaColores.forEach((e) => {
+                        let li = document.createElement('li');
+                        li.innerText = e.nombre;
+                        li.dataset.cod = e.cod;
+                        li.addEventListener('mouseenter', (evt) => {
+                            document.querySelector('div').style.backgroundColor = evt.target.dataset.cod;
+                        })
+                        ul.append(li);
+                    });
+                    document.querySelector('div').replaceChildren(ul);
+                });
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="nombre">
+        <input type="text" id="cod">
+        <button id="a">Añadir</button>
+        <button id="v">Ver lista</button>
+        <button id="o">Ordenar</button>
+    </form>
+    <div>
+
+    </div>
+
+</body>
+
+</html>
