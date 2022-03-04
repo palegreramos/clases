@@ -22,5 +22,5 @@ const productos = [
   }
 ]
 ```
-
+---
 3. Crea un array con 10 elementos que contengan números [aleatorios](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) del 1 al 100. Crea otro que contenga las [raíces cuadradas](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt) de ese array, utilizando [map](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Ordena este último array utilizando [sort](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) y elimina los 3 primeros elementos utilizando [slice](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/slice). Muestra cada resultado por la consola.
