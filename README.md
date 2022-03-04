@@ -25,7 +25,7 @@ const productos = [
 ---
 3. Crea un array con 10 elementos que contengan números [aleatorios](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random) del 1 al 100. Crea otro que contenga las [raíces cuadradas](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt) de ese array, utilizando [map](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map). Ordena este último array utilizando [sort](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) y elimina los 3 primeros elementos utilizando [slice](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/slice). Muestra cada resultado por la consola.
 ---
-5. En el siguiente trozo de código añade eventos de manera que al pulsar sobre el primer div, se escriba el valor de su atributo data en el segundo div, y al pinchar sobre los li se escriba el valor del atributo data en cada span.
+4. En el siguiente trozo de código añade eventos de manera que al pulsar sobre el primer div, se escriba el valor de su atributo data en el segundo div, y al pinchar sobre los li se escriba el valor del atributo data en cada span.
 ```
 <div data-nombre="Juan">Nombre</div>
 <div></div>
@@ -34,7 +34,9 @@ const productos = [
   <li data-animal-type="fish">Salmon</li>
   <li data-animal-type="spider">Tarantula</li>
 </ul> 
+<p>
   <span></span>
   <span></span>
   <span></span>
+ </p>
 ```
